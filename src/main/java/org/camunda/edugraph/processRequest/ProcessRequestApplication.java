@@ -11,19 +11,12 @@
  * limitations under the License.
  */
 
-package org.camunda.bpm.getstarted.loanapproval;
+package org.camunda.edugraph.processRequest;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.application.ProcessApplication;
+import org.camunda.bpm.application.impl.ServletProcessApplication;
 
-import java.util.logging.Logger;
-
-public class ProcessRequestDelegate implements JavaDelegate {
-
-  private final static Logger LOGGER = Logger.getLogger("LOAN-REQUESTS");
-
-  public void execute(DelegateExecution execution) throws Exception {
-    LOGGER.info("Processing request by '"+execution.getVariable("customerId")+"'...");
-  }
-
+@ProcessApplication("Process-Request App")
+public class ProcessRequestApplication extends ServletProcessApplication {
+  // empty implementation
 }

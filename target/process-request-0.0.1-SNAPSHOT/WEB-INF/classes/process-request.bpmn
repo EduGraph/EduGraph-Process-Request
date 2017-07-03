@@ -47,11 +47,14 @@
       <bpmn:outgoing>SequenceFlow_15ro4v4</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1wauv2v</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_sendApply" name="Bestätigung zum Erhalt der Anfrage senden" camunda:expression="${true}" camunda:resultVariable="0">
+    <bpmn:sendTask id="Task_sendApply" name="Bestätigung zum Erhalt der Anfrage senden" camunda:class="org.camunda.edugraph.processRequest.SendMailToCustomer.java">
       <bpmn:incoming>SequenceFlow_0igtkj1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08amueo</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:userTask id="Task_UserFirstLevelIncident" name="Incident Request bearbeiten" camunda:assignee="FirstLevelAgent">
+    <bpmn:userTask id="Task_UserFirstLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/2.FirstLevelAgent-Incident.html" camunda:assignee="FirstLevelAgent">
+      <bpmn:extensionElements>
+        <camunda:formData />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_15ro4v4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08k4l0s</bpmn:outgoing>
     </bpmn:userTask>
@@ -80,7 +83,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1b2zb3z" sourceRef="Task_GetIntoProductBacklog" targetRef="Task_SendResultProductBacklog" />
     <bpmn:sequenceFlow id="SequenceFlow_046qclm" sourceRef="Task_SecondLevelSendIncidentResult" targetRef="EndEvent_Incident" />
     <bpmn:sequenceFlow id="SequenceFlow_1mdjkag" sourceRef="Task_SendResultProductBacklog" targetRef="EndEvent_Incident" />
-    <bpmn:userTask id="Task_UserSecondLevelIncident" name="Incident Request bearbeiten" camunda:assignee="SecondLevelAgent">
+    <bpmn:userTask id="Task_UserSecondLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/3.SecondLevelAgent-Incident.html" camunda:assignee="SecondLevelAgent">
       <bpmn:incoming>SequenceFlow_1gi7k36</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0b8wgs4</bpmn:outgoing>
     </bpmn:userTask>
@@ -118,7 +121,7 @@
       <bpmn:incoming>SequenceFlow_08amueo</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1sg6u69</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_UserSecondLevelChange" name="Change Request bearbeiten" camunda:assignee="SecondLevelAgent">
+    <bpmn:userTask id="Task_UserSecondLevelChange" name="Change Request bearbeiten" camunda:formKey="embedded:app:forms/4.SecondLevelAgent-Change.html" camunda:assignee="SecondLevelAgent">
       <bpmn:incoming>SequenceFlow_1wauv2v</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16d7km4</bpmn:outgoing>
     </bpmn:userTask>
@@ -175,7 +178,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1wcbezl" name="Nein" sourceRef="ExclusiveGateway_00esm63" targetRef="Task_SendChangeDecline">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:startEvent id="StartEvent_ReceiveRequest" name="Anfrage erhalten" camunda:initiator="Anfragensteller">
+    <bpmn:startEvent id="StartEvent_ReceiveRequest" name="Anfrage erhalten" camunda:formKey="embedded:app:forms/1.Start.html" camunda:initiator="Anfragensteller">
       <bpmn:outgoing>SequenceFlow_0igtkj1</bpmn:outgoing>
     </bpmn:startEvent>
   </bpmn:process>
@@ -514,7 +517,7 @@
           <dc:Bounds x="2432" y="349" width="22" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="StartEvent_0ck9ap5_di" bpmnElement="StartEvent_ReceiveRequest">
+      <bpmndi:BPMNShape id="StartEvent_04w2rwx_di" bpmnElement="StartEvent_ReceiveRequest">
         <dc:Bounds x="221" y="43" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="199" y="83" width="80" height="12" />
