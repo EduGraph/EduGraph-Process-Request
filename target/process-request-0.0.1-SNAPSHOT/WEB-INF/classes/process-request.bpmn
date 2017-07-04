@@ -14,14 +14,14 @@
   <bpmn:process id="Process_1ki2ucj" name="Process_Request" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="lane_firstLevelSupport" name="1st Level Support">
-        <bpmn:flowNodeRef>ExclusiveGateway_dmnClassification</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_sendApply</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_requestClassification</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_UserFirstLevelIncident</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_firstLevelIncidentResult</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_Incident</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_FirstLevelSendIncidentResult</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_classifyRequest</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_ReceiveRequest</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_sendApply</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="lane_secondLevelSupport" name="2nd Level Support">
         <bpmn:flowNodeRef>Task_UserSecondLevelIncident</bpmn:flowNodeRef>
@@ -39,19 +39,15 @@
         <bpmn:flowNodeRef>ExclusiveGateway_00esm63</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_1wauv2v" name="Change" sourceRef="ExclusiveGateway_dmnClassification" targetRef="Task_UserSecondLevelChange">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Change</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="SequenceFlow_1wauv2v" name="Change" sourceRef="ExclusiveGateway_requestClassification" targetRef="Task_UserSecondLevelChange">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_dmnClassification" name="Ergebnis?">
+    <bpmn:exclusiveGateway id="ExclusiveGateway_requestClassification" name="Ergebnis?">
       <bpmn:incoming>SequenceFlow_1sg6u69</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15ro4v4</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1wauv2v</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_sendApply" name="Bestätigung zum Erhalt der Anfrage senden" camunda:class="org.camunda.edugraph.processRequest.SendMailToCustomer.java">
-      <bpmn:incoming>SequenceFlow_0igtkj1</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_08amueo</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:userTask id="Task_UserFirstLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/2.FirstLevelAgent-Incident.html" camunda:assignee="FirstLevelAgent">
+    <bpmn:userTask id="Task_UserFirstLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/2.FirstLevelAgentIncident.html" camunda:assignee="demo">
       <bpmn:extensionElements>
         <camunda:formData />
       </bpmn:extensionElements>
@@ -60,9 +56,9 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0igtkj1" sourceRef="StartEvent_ReceiveRequest" targetRef="Task_sendApply" />
     <bpmn:sequenceFlow id="SequenceFlow_08amueo" sourceRef="Task_sendApply" targetRef="Task_classifyRequest" />
-    <bpmn:sequenceFlow id="SequenceFlow_1sg6u69" sourceRef="Task_classifyRequest" targetRef="ExclusiveGateway_dmnClassification" />
-    <bpmn:sequenceFlow id="SequenceFlow_15ro4v4" name="Incident" sourceRef="ExclusiveGateway_dmnClassification" targetRef="Task_UserFirstLevelIncident">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Incident</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="SequenceFlow_1sg6u69" sourceRef="Task_classifyRequest" targetRef="ExclusiveGateway_requestClassification" />
+    <bpmn:sequenceFlow id="SequenceFlow_15ro4v4" name="Incident" sourceRef="ExclusiveGateway_requestClassification" targetRef="Task_UserFirstLevelIncident">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="ExclusiveGateway_firstLevelIncidentResult" name="Ergebnis?">
       <bpmn:incoming>SequenceFlow_08k4l0s</bpmn:incoming>
@@ -71,7 +67,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_08k4l0s" sourceRef="Task_UserFirstLevelIncident" targetRef="ExclusiveGateway_firstLevelIncidentResult" />
     <bpmn:sequenceFlow id="SequenceFlow_1gi7k36" name="2nd Level Incident" sourceRef="ExclusiveGateway_firstLevelIncidentResult" targetRef="Task_UserSecondLevelIncident">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0b8wgs4" sourceRef="Task_UserSecondLevelIncident" targetRef="ExclusiveGateway_secondLevelIncidentResult" />
     <bpmn:sequenceFlow id="SequenceFlow_1g6c6yb" name="Incident behoben" sourceRef="ExclusiveGateway_secondLevelIncidentResult" targetRef="Task_SecondLevelSendIncidentResult">
@@ -83,7 +79,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1b2zb3z" sourceRef="Task_GetIntoProductBacklog" targetRef="Task_SendResultProductBacklog" />
     <bpmn:sequenceFlow id="SequenceFlow_046qclm" sourceRef="Task_SecondLevelSendIncidentResult" targetRef="EndEvent_Incident" />
     <bpmn:sequenceFlow id="SequenceFlow_1mdjkag" sourceRef="Task_SendResultProductBacklog" targetRef="EndEvent_Incident" />
-    <bpmn:userTask id="Task_UserSecondLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/3.SecondLevelAgent-Incident.html" camunda:assignee="SecondLevelAgent">
+    <bpmn:userTask id="Task_UserSecondLevelIncident" name="Incident Request bearbeiten" camunda:formKey="embedded:app:forms/3.SecondLevelAgentIncident.html" camunda:assignee="SecondLevelAgent">
       <bpmn:incoming>SequenceFlow_1gi7k36</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0b8wgs4</bpmn:outgoing>
     </bpmn:userTask>
@@ -109,19 +105,19 @@
       <bpmn:incoming>SequenceFlow_1mdjkag</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_1g5rm9v</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sendTask id="Task_FirstLevelSendIncidentResult" name="Ergebnis senden" camunda:expression="${true}" camunda:resultVariable="0">
+    <bpmn:sendTask id="Task_FirstLevelSendIncidentResult" name="Ergebnis senden" camunda:class="org.camunda.edugraph.processRequest.SendResultToCustomer">
       <bpmn:incoming>SequenceFlow_0vqcfmx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1g5rm9v</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_1g5rm9v" sourceRef="Task_FirstLevelSendIncidentResult" targetRef="EndEvent_Incident" />
     <bpmn:sequenceFlow id="SequenceFlow_0vqcfmx" name="Incident behoben" sourceRef="ExclusiveGateway_firstLevelIncidentResult" targetRef="Task_FirstLevelSendIncidentResult">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">true</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="Task_classifyRequest" name="Anfrage klassifizieren" camunda:expression="${true}">
+    <bpmn:serviceTask id="Task_classifyRequest" name="Anfrage klassifizieren" camunda:class="org.camunda.edugraph.processRequest.ClassificateRequest">
       <bpmn:incoming>SequenceFlow_08amueo</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1sg6u69</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_UserSecondLevelChange" name="Change Request bearbeiten" camunda:formKey="embedded:app:forms/4.SecondLevelAgent-Change.html" camunda:assignee="SecondLevelAgent">
+    <bpmn:userTask id="Task_UserSecondLevelChange" name="Change Request bearbeiten" camunda:formKey="embedded:app:forms/4.SecondLevelAgentChange.html" camunda:assignee="SecondLevelAgent">
       <bpmn:incoming>SequenceFlow_1wauv2v</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16d7km4</bpmn:outgoing>
     </bpmn:userTask>
@@ -181,6 +177,10 @@
     <bpmn:startEvent id="StartEvent_ReceiveRequest" name="Anfrage erhalten" camunda:formKey="embedded:app:forms/1.Start.html" camunda:initiator="Anfragensteller">
       <bpmn:outgoing>SequenceFlow_0igtkj1</bpmn:outgoing>
     </bpmn:startEvent>
+    <bpmn:sendTask id="Task_sendApply" name="Bestätigung zum Erhalt der Anfrage senden" camunda:class="org.camunda.edugraph.processRequest.SendMailToCustomer">
+      <bpmn:incoming>SequenceFlow_0igtkj1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_08amueo</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmn:message id="Message_1i79djv" name="${true}" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -204,7 +204,7 @@
           <dc:Bounds x="237.5" y="40" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_13ufmzm_di" bpmnElement="ExclusiveGateway_dmnClassification" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="ExclusiveGateway_13ufmzm_di" bpmnElement="ExclusiveGateway_requestClassification" isMarkerVisible="true">
         <dc:Bounds x="618.6328571428571" y="36" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="619" y="90" width="49" height="12" />
@@ -224,9 +224,6 @@
           <dc:Bounds x="392" y="40" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="SendTask_0oeez26_di" bpmnElement="Task_sendApply">
-        <dc:Bounds x="308" y="21" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0brlkva_di" bpmnElement="MessageFlow_0brlkva">
         <di:waypoint xsi:type="dc:Point" x="358" y="21" />
         <di:waypoint xsi:type="dc:Point" x="358" y="-134" />
@@ -522,6 +519,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="199" y="83" width="80" height="12" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SendTask_1nyow4j_di" bpmnElement="Task_sendApply">
+        <dc:Bounds x="308" y="21" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

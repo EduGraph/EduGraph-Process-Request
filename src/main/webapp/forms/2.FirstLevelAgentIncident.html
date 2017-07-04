@@ -1,0 +1,46 @@
+<p>Bitte f&uumlllen Sie das folgende Feld aus. Nachdem das Formular abgeschickt wurde, wird der Prozess fortgesetzt.</p>
+				
+<form name="FirstLevelIncident">
+  <div class="form-group">
+    <label for="customerName">Kundenname</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerName"
+           name="customerName" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="customerRequest">Art der Anfrage</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerRequest"
+           name="customerRequest" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestSection">Problemfeld</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestSection"
+           name="requestSection" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestDescription">Problembeschreibung</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestDescription"
+           name="requestDescription" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="editFirstLevelIncidentBool">Konnten Sie die Incident Anfrage beheben? Falls nein, wird diese an den Second Level Agent weitergeleitet.</label>
+    <select class="form-control" 
+            cam-variable-type="String"
+            cam-variable-name="editFirstLevelIncidentBool"
+            name="editFirstLevelIncidentBool">
+    	<option value="yes" >Ja</option>
+		<option value="no" selected="selected">Nein</option>
+	</select>
+  </div>
+</form>
