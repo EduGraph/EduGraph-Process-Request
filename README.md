@@ -1,6 +1,6 @@
 # EduGraph-Process-Request
 
-#####DESCRIPTION#####\\
+#####DESCRIPTION#####  
 The process describes the story of the request from a customer of EduGraph. The customer sent a request via a form. 
 This form handles the two big types of a request and brings the process to the right way. On the one hand is the "incident"- and on the other hand the "change"-Request.
 The incident request goes at first to the first level Agent, who will try to solve the incident. If he can not solve the incident, the process automatically puts it through to the second Level Agent.
