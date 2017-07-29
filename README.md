@@ -1,7 +1,8 @@
 # EduGraph-Process-Request
 #####CONTRIBUTERS#####  
 Sebastian Kobiella  
-Caroline Engel
+Caroline Engel  
+  
 #####DESCRIPTION#####  
   
 The process describes the story of the request from a customer of EduGraph. The customer sent a request via a form. 
