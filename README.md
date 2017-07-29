@@ -1,5 +1,6 @@
 # EduGraph-Process-Request
-#####CONTRIBUTERS#####  
+#####CONTRIBUTERS##### 
+   
 Sebastian Kobiella  
 Caroline Engel  
   
