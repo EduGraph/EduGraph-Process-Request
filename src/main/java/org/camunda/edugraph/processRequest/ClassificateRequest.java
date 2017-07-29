@@ -11,7 +11,7 @@ public class ClassificateRequest implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 	    LOGGER.info("ZZZZZ an dieser Stelle wird die DMN selbst klassifiziert");
 	    
-	    if(execution.getVariable("isChangeSerious")=="false"){
+	    if(Boolean.parseBoolean(String.valueOf(execution.getVariable("isChangeSerious")))==false){
 	    	this.result = "nein";
 	    }
 	    if(Boolean.parseBoolean(String.valueOf(execution.getVariable("isChangeSerious")))==true){
