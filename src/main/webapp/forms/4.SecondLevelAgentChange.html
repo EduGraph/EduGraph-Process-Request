@@ -1,47 +1,78 @@
-<p>Bitte bewerten Sie die Change Request anhand folgender Fragen:</p>
-				
+<p>Bitte bewerten Sie die Change Request anhand folgender Fragen:</p>				
 <form name="SecondLevelIncident">
   <div class="form-group">
-    <label for="realRequestBool">Handelt es sich um eine ernst zu nehmende Anfrage?</label>
+    <label for="customerName">Kundenname</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerName"
+           name="customerName" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="customerRequest">Art der Anfrage</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerRequest"
+           name="customerRequest" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestSection">Problemfeld</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestSection"
+           name="requestSection" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestDescription">Problembeschreibung</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestDescription"
+           name="requestDescription" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="isChangeSerious">Handelt es sich um eine ernst zu nehmende Anfrage?</label>
     <select class="form-control" 
-            cam-variable-type="String"
-            cam-variable-name="realRequestBool"
-            name="realRequestBool">
-    	<option value="yes" >Ja</option>
-		<option value="no" selected="selected">Nein</option>
+            cam-variable-type="Boolean"
+            cam-variable-name="isChangeSerious"
+            name="isChangeSerious">
+    	<option value="true" >Ja</option>
+		<option value="False" selected="selected">Nein</option>
 	</select>
   </div>
   
   <div class="form-group">
-    <label for="FirstLevelIncident">Wie wird der Zeitaufwand eingesch&aumltzt?</label>
+    <label for="isLessTime">Ist der Zeitaufwand gering?</label>
     <select class="form-control" 
-            cam-variable-type="String"
-            cam-variable-name="FirstLevelIncident"
-            name="FirstLevelIncident">
-    	<option value="yes" >Hoch</option>
-		<option value="no" selected="selected">Gering</option>
+            cam-variable-type="Boolean"
+            cam-variable-name="isLessTime"
+            name="isLessTime">
+    	<option value="true" >Ja</option>
+		<option value="false" selected="selected">Nein</option>
 	</select>
   </div>
   
   <div class="form-group">
-    <label for="FirstLevelIncident">Wie wird der Kostenaufwand eingesch&aumltzt?</label>
+    <label for="isLessCost">Ist der Kostenaufwand gering?</label>
     <select class="form-control" 
-            cam-variable-type="String"
-            cam-variable-name="FirstLevelIncident"
-            name="FirstLevelIncident">
-    	<option value="yes" >Ja</option>
-		<option value="no" selected="selected">Nein</option>
+            cam-variable-type="Boolean"
+            cam-variable-name="isLessCost"
+            name="isLessCost">
+    	<option value="true" >Ja</option>
+		<option value="false" selected="selected">Nein</option>
 	</select>
   </div>
   
   <div class="form-group">
-    <label for="FirstLevelIncident">Sind mehrere Hochschulen vom Change betroffen?</label>
-    <select class="form-control" 
-            cam-variable-type="String"
-            cam-variable-name="FirstLevelIncident"
-            name="FirstLevelIncident">
-    	<option value="yes" >Ja</option>
-		<option value="no" selected="selected">Nein</option>
+    <label for="isMoreThanOne">Ist mehr als eine Hochschule vom Change betroffen?</label>
+    <select class="form-control"
+            cam-variable-type="Boolean"
+            cam-variable-name="isMoreThanOne"
+            name="isMoreThanOne">
+    	<option value="true" >Ja</option>
+		<option value="false" selected="selected">Nein</option>
 	</select>
   </div>
 </form>

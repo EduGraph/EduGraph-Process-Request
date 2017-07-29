@@ -1,14 +1,47 @@
-<p>Bitte f&uumlllen Sie das folgende Feld aus. Nachdem das Formular abgeschickt wurde, wird der Prozess fortgesetzt.</p>
+<p>Dieser Incident konnte leider vom First Level Agent nicht behoben werden. Bitte f&uumlllen Sie das folgende Feld aus. Nachdem das Formular abgeschickt wurde, wird der Prozess fortgesetzt.</p>
 				
 <form name="SecondLevelIncident">
+  <form name="FirstLevelIncident">
   <div class="form-group">
-    <label for="FirstLevelIncident">Konnten Sie die Incident Anfrage beheben? Falls nein, muss diese, vom Entwickler, bis zum nächsten Release behoben werden.</label>
+    <label for="customerName">Kundenname</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerName"
+           name="customerName" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="customerRequest">Art der Anfrage</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="customerRequest"
+           name="customerRequest" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestSection">Problemfeld</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestSection"
+           name="requestSection" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="requestDescription">Problembeschreibung</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="requestDescription"
+           name="requestDescription" 
+           readonly="true"/>
+  </div>
+  <div class="form-group">
+    <label for="editSecondLevelIncidentBool">Konnten Sie die Incident Anfrage beheben? Falls nein, muss diese vom Entwickler bis zum n&aumlchsten Release behoben werden.</label>
     <select class="form-control" 
-            cam-variable-type="String"
-            cam-variable-name="FirstLevelIncident"
-            name="FirstLevelIncident">
-    	<option value="yes" >Ja</option>
-		<option value="no" selected="selected">Nein</option>
+            cam-variable-type="Boolean"
+            cam-variable-name="editSecondLevelIncidentBool"
+            name="editSecondLevelIncidentBool">
+    	<option value="true" >Ja</option>
+		<option value="false" selected="selected">Nein</option>
 	</select>
   </div>
 </form>

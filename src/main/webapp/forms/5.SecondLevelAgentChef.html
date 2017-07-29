@@ -34,43 +34,50 @@
   </div>
   <div class="form-group">
     <label for="isChangeSerious">Handelt es sich um eine ernst zu nehmende Anfrage?</label>
-    <select class="form-control" 
+    <input class="form-control" 
             cam-variable-type="Boolean"
             cam-variable-name="isChangeSerious"
-            name="isChangeSerious">
-    	<option value="true" >Ja</option>
-		<option value="False" selected="selected">Nein</option>
+            name="isChangeSerious"
+            readonly="true">
 	</select>
   </div>
   
   <div class="form-group">
     <label for="isLessTime">Ist der Zeitaufwand gering?</label>
-    <select class="form-control" 
+    <input class="form-control" 
             cam-variable-type="Boolean"
             cam-variable-name="isLessTime"
-            name="isLessTime">
-    	<option value="true" >Ja</option>
-		<option value="false" selected="selected">Nein</option>
+            name="isLessTime"
+            readonly="true">
 	</select>
   </div>
   
   <div class="form-group">
     <label for="isLessCost">Ist der Kostenaufwand gering?</label>
-    <select class="form-control" 
+    <input class="form-control" 
             cam-variable-type="Boolean"
             cam-variable-name="isLessCost"
-            name="isLessCost">
-    	<option value="true" >Ja</option>
-		<option value="false" selected="selected">Nein</option>
+            name="isLessCost"
+            readonly="true">
 	</select>
   </div>
   
   <div class="form-group">
     <label for="isMoreThanOne">Ist mehr als eine Hochschule vom Change betroffen?</label>
-    <select class="form-control"
+    <input class="form-control"
             cam-variable-type="Boolean"
             cam-variable-name="isMoreThanOne"
-            name="isMoreThanOne">
+            name="isMoreThanOne"
+            readonly="true">
+	</select>
+  </div>
+  
+  <div class="form-group">
+    <label for="editChef">Soll der Change ausgef&uumlhrt werden?</label>
+    <select class="form-control" 
+            cam-variable-type="Boolean"
+            cam-variable-name="editChef"
+            name="editChef">
     	<option value="true" >Ja</option>
 		<option value="false" selected="selected">Nein</option>
 	</select>
